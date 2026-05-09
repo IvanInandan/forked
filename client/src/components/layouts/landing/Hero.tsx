@@ -1,5 +1,7 @@
 import { Card } from "@/components/ui/card";
 import girl from "@/assets/girleating.png";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
 
 const Hero = () => {
   return (
