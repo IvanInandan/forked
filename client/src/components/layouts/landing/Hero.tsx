@@ -24,7 +24,7 @@ const Hero = () => {
         <img src={girl} alt="sushi" className="h-3/4 relative z-10" />
       </div>
 
-      <div className="col-span-2 flex justify-center items-center border-border border-1 bg-primary z-1">
+      <div className="col-span-2 flex justify-center items-center border-border bg-primary z-1">
         <div className="flex items-center justify-center overflow-hidden whitespace-nowrap w-full h-full">
           <div className="animate-marquee">
             {/* Duplicate text for seamless scrolling */}

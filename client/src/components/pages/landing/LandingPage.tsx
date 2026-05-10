@@ -8,6 +8,7 @@ import ScrollGraphic from "@/components/ui/ScrollGraphic";
 import Footer from "@/components/layouts/landing/Footer";
 import Hero from "../../layouts/landing/Hero";
 import Features from "@/components/layouts/landing/Features";
+import Contact from "@/components/layouts/landing/Contact";
 
 const LandingPage = () => {
   const { scrollY } = useScroll();
@@ -86,13 +87,10 @@ const LandingPage = () => {
         </section>
 
         <Features />
+        <Contact />
 
         <section className="h-screen flex items-center justify-center">
           <h2 className="text-3xl">newsletter</h2>
-        </section>
-
-        <section className="h-screen flex items-center justify-center">
-          <h2 className="text-3xl">contact</h2>
         </section>
       </main>
 

@@ -14,7 +14,9 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { toast } from "sonner";
+import { useAuth } from "../../../hooks/useAuth";
 
 interface LoginFormProps extends React.HTMLAttributes<HTMLDivElement> {
   onSwitchForm?: () => void;
@@ -25,7 +27,17 @@ export function LoginForm({
   className,
   ...props
 }: LoginFormProps) {
-  const navigate = useNavigate();
+  const { handleLogin } = useAuth();
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const login = async (e: any) => {
+    e.preventDefault();
+
+    const loginSuccess = await handleLogin({ username, password });
+    if (!loginSuccess) toast.error("error logging in");
+  };
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -45,12 +57,20 @@ export function LoginForm({
                   id="email"
                   type="email"
                   placeholder="m@example.com"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   required
                 />
               </Field>
               <Field>
                 <FieldLabel htmlFor="password">Password</FieldLabel>
-                <Input id="password" type="password" required />
+                <Input
+                  id="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
 
                 <div className="flex justify-end">
                   <a
@@ -62,11 +82,7 @@ export function LoginForm({
                 </div>
               </Field>
               <Field>
-                <Button
-                  className="bg-secondary"
-                  type="submit"
-                  onClick={() => navigate("/dashboard")}
-                >
+                <Button className="bg-secondary" type="submit" onClick={login}>
                   Login
                 </Button>
                 <FieldDescription className="text-center">
